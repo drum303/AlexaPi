@@ -120,7 +120,8 @@ def start():
 		inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
 		inp.setperiodsize(500)
 		audio = ""
-		while(GPIO.input(button)==0): # we keep recording while the button is pressed
+		t_end = time.time() + 5 
+		while time.time() < t_end: # record audio for 5 seconds
 			l, data = inp.read()
 			if l:
 				audio += data
